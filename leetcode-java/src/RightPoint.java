@@ -1,5 +1,5 @@
+import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.LongStream;
 
 /**
  * @author Kevin Phillips
@@ -13,13 +13,38 @@ public class RightPoint {
     public static void main(String args[]) {
 //        int n = 100;
 //        Print starting at 0 or 1 ??
+
+/*        IntStream intStream = IntStream.rangeClosed(1,100);
+        Stream<IntStream> streamStream = IntStream.rangeClosed(1,100);
+
+//        Stream<BigInteger> stream = intStream.mapToObj(BigInteger::valueOf);
+        stream.forEach(b -> System.out.println(b.multiply(BigInteger.TEN)));*/
+
+// ******
+// Use objects or use recursion
+// ******
+//        intStream.forEach(n -> n.);
+
+              IntStream intStream = IntStream.rangeClosed(1,100);
+        Object[] array = intStream
+                .boxed().toArray();
+        List list;
         IntStream.rangeClosed(1,100)
 //                .flatMap(.filter(n->(n%3==0)))
-                .filter(n->(n %3 == 0))
+//                .filter(n->(n %3 == 0))
+//                .filter(n->(n %5 == 0))
 //                .flatMap(n -> "right")
 //                .map(n -> (n / 3))
+//                .filter(x -> x % 3 == 0).boxed().collect(Collectors.toList())
+//                .map(i -> i*3)
+                .map(n -> n % 3)
+//                .mapToObj()
+//                .forEach(n -> n %3 ==0)
                 .forEach(System.out::println);
 //                .filter(i-> i%3 == 0);
+
+//        IntStream sum = IntStream.range(1, 100)
+
 
 //        IntStream.rangeClosed(1, 100).map(i -> i % 3);
 
@@ -54,6 +79,13 @@ public class RightPoint {
             else // print the numbers
                 System.out.print(i + " ");
         }*/
+
+/*    IntStream ints = Arrays.stream(new int[] {1,2,3,4,5});
+    List<Integer> intsList;
+            ints.map(x-> x*x)
+//                    .collect()
+//            .collect(intsList::add);
+            .collect(ArrayList<Integer>::new, ArrayList::add, ArrayList::addAll);*/
     }
 }
 
