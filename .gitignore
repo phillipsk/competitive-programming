@@ -73,3 +73,12 @@ fabric.properties
 #Custom
 /.idea/
 *.iml
+/lib/
+/out/
+/codility-kotlin/codility/.gradle/
+/codility-kotlin/codility/build/
+/codility-kotlin/codility/gradle/
+/codility-kotlin/codility/gradlew
+/codility-kotlin/codility/gradlew.bat
+
+/HackerRank/target/classes/
