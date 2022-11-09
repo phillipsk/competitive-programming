@@ -1,4 +1,3 @@
-import jdk.nashorn.internal.runtime.JSType.toDouble
 import kotlin.math.abs
 import kotlin.math.absoluteValue
 import kotlin.math.log10
