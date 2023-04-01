@@ -5,25 +5,20 @@ class Solution {
         "I" to 1, "V" to 5, "X" to 10, "L" to 50,
         "C" to 100, "D" to 500, "M" to 1000
     )
-    private val subtractSet = setOf("I", "X", "C")
     private val subtractMap = mapOf(
         "I" to Pair("V", "X"), "X" to Pair("L", "C"), "C" to Pair("D", "M")
     )
-//    private val subtractSet = m.filterKeys { it == "I" || it == "X" || it == "C" }.keys
 
     fun romanToInt(s: String): Int {
         var r = 0
-        s.mapNotNull {
-            it.toString()
-        }.forEachIndexed { i, curr ->
-            val v = romanValue(curr)
+        var i = 0
+        while (i <= s.lastIndex) {
+            val curr = s[i].toString()
+            val currV = romanValue(curr)
             val prev = s.getOrNull(i - 1).toString()
             val next = s.getOrNull(i + 1).toString()
             val nextV = romanValue(next)
-//            val match = subtractMap.containsKey(curr) && subtractMap[curr].first = prev
-            val match = subtractMap[curr]?.first == prev || subtractMap[curr]?.second == prev
-            val skip = subtractMap.containsKey(curr)
-//            val match = subtractSet.contains(curr) && i > 0
+            val match = subtractMap[curr]?.first == next || subtractMap[curr]?.second == next
 
             if (match) {
                 when (nextV) {
@@ -39,12 +34,11 @@ class Solution {
                         r += nextV - 100
                     }
                 }
-//                i += 1
-            } else if (skip) {
-
+                i += 1
             } else {
-                r += v
+                r += currV
             }
+            i += 1
         }
         return r
     }
