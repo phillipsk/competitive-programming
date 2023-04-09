@@ -33,10 +33,11 @@ class LongestCommonPrefix {
         return z
     }
 
-    fun longestCommonPrefixEditorialJava(strs: Array<String>): String? {
+    fun longestCommonPrefixHorizontal(strs: Array<String>): String? {
         if (strs.isEmpty()) return ""
-        var prefix = strs[0]
+        var prefix = strs[0] // sticky first word
         for (i in 1 until strs.size) while (strs[i].indexOf(prefix) != 0) {
+            // reduce length of first word if length does not match second, third, etc.. word
             prefix = prefix.substring(0, prefix.length - 1)
             if (prefix.isEmpty()) {
                 return ""
@@ -48,12 +49,12 @@ class LongestCommonPrefix {
 
 fun main() {
     println(
-        LongestCommonPrefix().longestCommonPrefixEditorialJava(
+        LongestCommonPrefix().longestCommonPrefixHorizontal(
             arrayOf("flower", "flow", "flight")
         )
     )
     println(
-        LongestCommonPrefix().longestCommonPrefixEditorialJava(
+        LongestCommonPrefix().longestCommonPrefixHorizontal(
             arrayOf("dog", "racecar", "car")
         )
     )
