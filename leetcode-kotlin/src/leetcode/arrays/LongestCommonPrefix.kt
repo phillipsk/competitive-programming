@@ -45,16 +45,29 @@ class LongestCommonPrefix {
         }
         return prefix
     }
+
+    fun longestCommonPrefixVertical(strs: Array<String>?): String? {
+        if (strs.isNullOrEmpty()) return ""
+        for (i in 0 until strs[0].length) { // iterates over first word
+            val c = strs[0][i] // first word characters
+            for (j in 1 until strs.size) { // iterate over i-th letter of each word
+                if (i == strs[j].length || strs[j][i] != c) {
+                    return strs[0].substring(0, i)
+                }
+            }
+        }
+        return strs[0]
+    }
 }
 
 fun main() {
     println(
-        LongestCommonPrefix().longestCommonPrefixHorizontal(
+        LongestCommonPrefix().longestCommonPrefixVertical(
             arrayOf("flower", "flow", "flight")
         )
     )
     println(
-        LongestCommonPrefix().longestCommonPrefixHorizontal(
+        LongestCommonPrefix().longestCommonPrefixVertical(
             arrayOf("dog", "racecar", "car")
         )
     )
