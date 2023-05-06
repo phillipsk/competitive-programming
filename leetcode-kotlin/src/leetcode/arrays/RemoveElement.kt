@@ -6,16 +6,20 @@ class RemoveElement {
         for (i in 0 until nums.size) {
             if (nums[i] == `val`) {
                 j = i
+
                 while (j < nums.size && nums[j] == nums[i]) {
                     j++
                 }
-                if (j < nums.size) {
-                    val t = nums[i]
-                    nums[i] = nums[j]
-                    nums[j] = t
+                if (j >= nums.size) {
+                    break
                 }
+
+                val t = nums[i]
+                nums[i] = nums[j]
+                nums[j] = t
             }
         }
+
         var counter = 0
         for (i in 0 until nums.size) {
             if (nums[i] != `val`) {
