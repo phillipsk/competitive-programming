@@ -8,10 +8,9 @@ class CombinationSum {
         target: Int,
         nums: List<Int>,
         output: MutableList<List<Int>>,
-        subtotal: Int,
         list: MutableList<Int>
     ) {
-        var sum = subtotal
+        var sum = 0
         var i = 0
 
         if (sum == target) {
@@ -19,18 +18,20 @@ class CombinationSum {
         }
 
         while (sum < target) {
-            val check = ((target - sum) - nums[i]) >= 0
+            val subtotal = target - sum
+            val check = nums[i] <= subtotal
             if (check) {
                 sum += nums[i]
                 list.add(nums[i])
             } else {
-                backtrack(target, nums, output, sum, list)
+                backtrack(subtotal, nums, output, list)
             }
             i++
         }
 
         if (sum == target) {
             output.add(list)
+            list.clear()
         }
     }
 
@@ -46,7 +47,7 @@ class CombinationSum {
             }
         }
 
-        backtrack(target = target, nums = nums, output = output, subtotal = 0, list)
+        backtrack(target = target, nums = nums, output = output, list)
 
         return output
     }
