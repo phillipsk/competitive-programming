@@ -4,34 +4,23 @@ import java.util.*
 
 //  candidates = [2,3,6,7], target = 7  --> Output: [[2,2,3],[7]]
 class CombinationSum {
-    private fun backtrack(
-        target: Int,
-        nums: List<Int>,
-        output: MutableList<List<Int>>,
-        list: MutableList<Int>
-    ) {
+    private fun backtrack(target: Int, nums: List<Int>, output: MutableList<List<Int>>, list: MutableList<Int>) {
         var sum = 0
-        var i = 0
-
-        if (sum == target) {
-            output.add(ArrayList(nums))
-        }
-
-        while (sum < target) {
-            val subtotal = target - sum
-            val check = nums[i] <= subtotal
-            if (check) {
-                sum += nums[i]
+        var subtotal = target
+        for (i in nums.indices) {
+            if (nums[i] == subtotal) {
                 list.add(nums[i])
-            } else {
-                backtrack(subtotal, nums, output, list)
+                output.add(list)
+                break
+            } else if (nums[i] < subtotal) {
+                sum += nums[i]
+                subtotal -= nums[i]
+                list.add(nums[i])
             }
-            i++
         }
 
-        if (sum == target) {
-            output.add(list)
-            list.clear()
+        if (sum > 0) {
+            backtrack(subtotal, nums, output, list)
         }
     }
 
@@ -40,12 +29,12 @@ class CombinationSum {
         val nums = candidates.toList()
         val output: MutableList<List<Int>> = mutableListOf()
         val list = mutableListOf<Int>()
-        for (i in 0 until nums.size) {
+/*        for (i in 0 until nums.size) {
             if (target % nums[i] == 0) { // list of all the same element
                 val l = target / nums[i]
                 output.add(List(l) { nums[i] })
             }
-        }
+        }*/
 
         backtrack(target = target, nums = nums, output = output, list)
 
