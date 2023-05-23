@@ -1,6 +1,7 @@
 package backtracking
 
 //  candidates = [2,3,6,7], target = 7  --> Output: [[2,2,3],[7]]
+//  candidates = [2,3,5], target = 8 --> Output: [[2,2,2,2],[2,3,3],[3,5]]
 class CombinationSum {
     private fun backtrack(
         target: Int,
@@ -10,74 +11,25 @@ class CombinationSum {
         idx: Int
     ) {
         var list = mutableListOf<Int>()
-        for (i in nums.indices) {
-            var subtotal = target
-            var sum = 0
+        var subtotal = target
+        var sum = 0
 
-            WhileLoop@ while (subtotal != 0) {
-
-                for (j in nums.indices) {
-                    if (subtotal in 1 until target && subtotal % nums[j] == 0 && !output.contains(listOf(subtotal))) { // list of all the same element
-                        val l = subtotal / nums[j]
-                        list.addAll(List(l) { nums[j] })
-                        if (!output.contains(list)) {
-                            output.add(list)
-                        } else {
-                            break
-                        }
-//                        subtotal = 0
-                        list = mutableListOf()
-                        break@WhileLoop
-                    }
-                }
-
-                if (list.sum() == target) {
-                    output.add(list)
-                    subtotal = 0
-                    list = mutableListOf()
-                    break
-                    // rotate array
-                    /*                    for (j in idx until nums.size) {
-                                                    val t = nums[j]
-                                                    nums[j] = nums[j - 1]
-                                                    nums[j - 1] = t
-                                                    backtrack(target = target, nums = nums, output = output, mutableListOf(), idx + 1)
-                                                }*/
-                }
-
-                //  && nums[i] <= subtotal
+        for (i in idx until nums.size) {
+            if (subtotal % nums[i] == 0 && subtotal < target) {
+                val l = subtotal / nums[i]
+                val ints = List(l) { nums[i] }
+                list.addAll(ints)
+                subtotal -= ints.sum()
+            }
+            if (subtotal == 0) {
+                output.add(list)
+                list = mutableListOf()
+                subtotal = target
+            } else {
                 sum += nums[i]
                 list.add(nums[i])
                 subtotal -= nums[i]
-
-                if (nums.contains(subtotal) && !output.contains(listOf(subtotal))
-                //                    && nums.indexOf(subtotal) == i
-                ) { // edge case
-                    list.add(subtotal)
-                    if (list.sum() == target) {
-                        output.add(list)
-                        subtotal = 0
-                        list = mutableListOf()
-                        break
-                        // rotate array
-                        /*                        for (j in idx until nums.size) {
-                                                            val t = nums[j]
-                                                            nums[j] = nums[j - 1]
-                                                            nums[j - 1] = t
-                                                            backtrack(target = target, nums = nums, output = output, mutableListOf(), idx + 1)
-                                                        }*/
-                    }
-                }
-
-                if (subtotal < nums.min()) {
-                    break
-                }
-
             }
-            // rotate array
-            /*            val t = nums[i]
-                        nums[i] = nums[i + 1]
-                        nums[i + 1] = t*/
         }
     }
 
@@ -86,14 +38,14 @@ class CombinationSum {
         val nums = candidates
         val output: MutableList<List<Int>> = mutableListOf()
         val list = mutableListOf<Int>()
-        for (i in 0 until nums.size) {
+        for (i in nums.indices) {
             if (target % nums[i] == 0) { // list of all the same element
                 val l = target / nums[i]
                 output.add(List(l) { nums[i] })
             }
         }
 
-        backtrack(target = target, nums = nums, output = output, list, 1)
+        backtrack(target = target, nums = nums, output = output, list, 0)
 
         return output
     }
