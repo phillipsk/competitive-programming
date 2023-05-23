@@ -8,29 +8,33 @@ class CombinationSum {
         nums: IntArray,
         output: MutableList<List<Int>>,
         list: MutableList<Int>,
-        idx: Int
+        i: Int
     ) {
         var list = mutableListOf<Int>()
         var subtotal = target
-        var sum = 0
 
-        for (i in idx until nums.size) {
-            if (subtotal % nums[i] == 0 && subtotal < target) {
+        while (subtotal > 0) {
+            if (subtotal % nums[i] == 0) {
                 val l = subtotal / nums[i]
                 val ints = List(l) { nums[i] }
-                list.addAll(ints)
-                subtotal -= ints.sum()
+                if (!output.contains(ints)) {
+                    list.addAll(ints)
+                    subtotal -= ints.sum()
+                } else {
+                    break
+                }
             }
-            if (subtotal == 0) {
-                output.add(list)
-                list = mutableListOf()
-                subtotal = target
-            } else {
-                sum += nums[i]
-                list.add(nums[i])
-                subtotal -= nums[i]
+
+            list.add(nums[i])
+            subtotal -= nums[i]
+
+            if (nums.contains(subtotal)) {
+                list.add(subtotal)
+                subtotal -= subtotal
             }
         }
+
+        if (list.isNotEmpty()) output.add(list)
     }
 
     fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
@@ -52,6 +56,6 @@ class CombinationSum {
 }
 
 fun main() {
-//    println(CombinationSum().combinationSum(intArrayOf(2, 3, 6, 7), 7))
+    println(CombinationSum().combinationSum(intArrayOf(2, 3, 6, 7), 7))
     println(CombinationSum().combinationSum(intArrayOf(2, 3, 5), 8))
 }
