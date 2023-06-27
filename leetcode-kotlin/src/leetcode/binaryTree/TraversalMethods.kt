@@ -1,5 +1,8 @@
 package binaryTree
 
+import java.util.*
+
+
 /**
  * Given a binary tree, return the ______ traversal of its nodes' values.
  *
@@ -71,15 +74,39 @@ class PostOrderSolution {
     }
 }
 
+class Iterative {  // 1,2,3 // 1,2
+    fun preorderTraversal(root: TreeNode?): List<Int> {
+        val answer: MutableList<Int> = ArrayList()
+        val s = Stack<TreeNode?>()
+        if (root != null) {
+            s.push(root)
+        }
+        var cur: TreeNode?
+        while (!s.empty()) {
+            cur = s.pop()
+            answer.add(cur!!.`val`) // visit the root
+            if (cur.right != null) {
+                s.push(cur.right) // push right child to stack if it is not null
+            }
+            if (cur.left != null) {
+                s.push(cur.left) // push left child to stack if it is not null
+            }
+        }
+        return answer
+    }
+}
+
 fun main() {
     var root = TreeNode(1)
     root.right = TreeNode(2)
     root.right?.left = TreeNode(3)
 //    println(PreOrderTraversal().preorderTraversal(root))
 //    println(InOrderTraversal.Solution().inorderTraversal(root))
-    println(PostOrderSolution().postorderTraversal(root)) // 3,2,1
+//    println(PostOrderSolution().postorderTraversal(root))
+    println(Iterative().preorderTraversal(root))
 
     root = TreeNode(1)
     root.left = TreeNode(2)
-    println(PostOrderSolution().postorderTraversal(root)) // 2,1
+//    println(PostOrderSolution().postorderTraversal(root))
+    println(Iterative().preorderTraversal(root))
 }
