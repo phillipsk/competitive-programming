@@ -22,6 +22,21 @@ class MaxDepthSolution {
         helper(root, 0)
         return counter
     }
+
+    internal class Solution {
+        var left_height = 0
+        var right_height = 0
+        fun maxDepth(root: TreeNode?): Int {
+            val counter = if (root == null) {
+                0
+            } else {
+                left_height = maxDepth(root.left)
+                right_height = maxDepth(root.right)
+                Math.max(left_height, right_height) + 1 // plus the root node
+            }
+            return counter
+        }
+    }
 }
 
 fun main() {
@@ -31,5 +46,6 @@ fun main() {
     root.right!!.left = TreeNode(15)
     root.right!!.right = TreeNode(7)
 
-    println(MaxDepthSolution().maxDepth(root))
+//    println(MaxDepthSolution().maxDepth(root))
+    println(MaxDepthSolution.Solution().maxDepth(root))
 }
