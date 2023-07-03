@@ -1,7 +1,7 @@
 package binaryTree
 
 
-class Solution {
+class OrderLevelTraversalBFS {
     var levels: MutableList<MutableList<Int>> = ArrayList()
 
     fun helper(node: TreeNode?, level: Int) {
@@ -37,5 +37,5 @@ fun main() {
     root.right!!.left = TreeNode(15)
     root.right!!.right = TreeNode(7)
 
-    println(Solution().levelOrder(root))
+    println(OrderLevelTraversalBFS().levelOrder(root))
 }
