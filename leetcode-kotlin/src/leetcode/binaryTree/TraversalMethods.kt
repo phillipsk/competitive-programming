@@ -74,8 +74,8 @@ class PostOrderSolution {
     }
 }
 
-class Iterative {  // 1,2,3 // 1,2
-    fun preorderTraversal(root: TreeNode?): List<Int> {
+class Iterative {  // 3,2,1 // 2,1
+    fun postorderTraversal(root: TreeNode?): List<Int> {
         val answer: MutableList<Int> = ArrayList()
         val s = Stack<TreeNode?>()
         if (root != null) {
@@ -94,6 +94,26 @@ class Iterative {  // 1,2,3 // 1,2
         }
         return answer
     }
+
+    internal class Solution {
+        fun preorderTraversal(root: TreeNode?): List<Int> {
+            val answer: MutableList<Int> = ArrayList()
+            val stack = Stack<TreeNode?>()
+            stack.add(root)
+
+            // Note that we add currNode's right child to the stack first.
+            while (!stack.isEmpty()) {
+                val currNode = stack.peek()
+                stack.pop()
+                if (currNode != null) {
+                    answer.add(currNode.`val`)
+                    stack.add(currNode.right)
+                    stack.add(currNode.left)
+                }
+            }
+            return answer
+        }
+    }
 }
 
 fun main() {
@@ -103,10 +123,10 @@ fun main() {
 //    println(PreOrderTraversal().preorderTraversal(root))
 //    println(InOrderTraversal.Solution().inorderTraversal(root))
 //    println(PostOrderSolution().postorderTraversal(root))
-    println(Iterative().preorderTraversal(root))
+    println(Iterative().postorderTraversal(root))
 
     root = TreeNode(1)
     root.left = TreeNode(2)
 //    println(PostOrderSolution().postorderTraversal(root))
-    println(Iterative().preorderTraversal(root))
+    println(Iterative().postorderTraversal(root))
 }
