@@ -1,6 +1,5 @@
 package binaryTree
 
-import kotlin.math.absoluteValue
 
 class PathSum {
     class Solution {
@@ -17,10 +16,10 @@ class PathSum {
         private fun helper(node: TreeNode) {
 
             val remain = targetSumM - tempSumM
-            val shouldAdd = if (node.`val` > 0) {
-                node.`val` <= remain.absoluteValue && !hasTargetSum
+            val shouldAdd = if (remain > 0) {
+                node.`val` <= remain && !hasTargetSum
             } else {
-                node.`val`.absoluteValue >= remain && !hasTargetSum
+                node.`val` >= remain && !hasTargetSum
             }
             if (shouldAdd) {
                 tempSumM += node.`val`
@@ -61,9 +60,10 @@ fun main() {
     root.left = TreeNode(2)
 //    println(PathSum.Solution().hasPathSum(root, 1))
 
-    root = TreeNode(-2)
-    root.right = TreeNode(-3)
-//    println(PathSum.Solution().hasPathSum(root, -3))
+    root = TreeNode(1)
+    root.left = TreeNode(-2)
+    root.right = TreeNode(3)
+    println(PathSum.Solution().hasPathSum(root, -2))
 
     root = TreeNode(1)
     root.left = TreeNode(-2)
@@ -73,5 +73,5 @@ fun main() {
 
     root.right = TreeNode(-3)
     root.right!!.left = TreeNode(-2)
-    println(PathSum.Solution().hasPathSum(root, 2))
+//    println(PathSum.Solution().hasPathSum(root, 2))
 }
