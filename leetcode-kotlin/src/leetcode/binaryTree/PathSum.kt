@@ -43,6 +43,15 @@ class PathSum {
             } // TODO: else
         }
     }
+
+    internal class EditorialSolution {
+        fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
+            var sum = sum
+            if (root == null) return false
+            sum -= root.`val`
+            return hasPathSum(root.left, sum) || hasPathSum(root.right, sum)
+        }
+    }
 }
 
 fun main() {
