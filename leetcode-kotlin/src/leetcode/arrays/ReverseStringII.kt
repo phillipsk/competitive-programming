@@ -5,13 +5,24 @@ class ReverseStringII {
         val cArr = s.toCharArray()
         val l = cArr.lastIndex
         val step = k * 2
-        val e = l / k
+        var ss: String = ""
 
         return if (l < k) {
             cArr.reverse()
             String(cArr)
         } else if (l < step && l >= k) {
             cArr.reverse(0, k)
+            String(cArr)
+        } else if (l % k > 0) {
+            var cc = charArrayOf()
+            val e = l / k
+            for ((c, i) in (0 until l step step).withIndex()) {
+                if (c == 0) {
+                    cArr.reverse(i, k)
+                } else {
+                    cArr.reverse(i, l + 1)
+                }
+            }
             String(cArr)
         } else {
             for (i in 0 until l step step) {
