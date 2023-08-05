@@ -5,17 +5,14 @@ class ReverseStringII {
         val cArr = s.toCharArray()
         val l = cArr.lastIndex
         val step = k * 2
-        var ss: String = ""
 
         return if (l < k) {
             cArr.reverse()
             String(cArr)
-        } else if (l < step && l >= k) {
+        } else if (l < step) {
             cArr.reverse(0, k)
             String(cArr)
         } else if (l % k > 0) {
-            var cc = charArrayOf()
-            val e = l / k
             for ((c, i) in (0 until l step step).withIndex()) {
                 if (c == 0) {
                     cArr.reverse(i, k)
@@ -55,14 +52,19 @@ fun main() {
 //    println(ReverseStringII().reverseStr("abcdef", 3))
 //    println(ReverseStringII().reverseStr("abcd", 4)) // dcba
 //    println(ReverseStringII().reverseStr("abcdefg", 4))
-    println(
+
+/*    println(
         ReverseStringII().reverseStr(
             "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknv" +
                     "dmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl", 39
         )
-    )
-    // fdcqkmxwholhytmhafpesaentdvxginrjlyqzyh
+    )*/
 
-//    "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl"
-//    "fdcqkmxwholhytmhafpesaentdvxginrjlyqzyhehybknvdmfrfvtbsovjbdhevlfxpdaovjgunjqllgsqddebemjanqcqnfkjmi"
+    println(
+        ReverseStringII().reverseStr(
+            "krmyfshbspcgtesxnnljhfursyissjnsocgdhgfxubew" +
+                    "llxzqhpasguvlrxtkgatzfybprfmmfithphckksnvjkcvnsqgsgosfxc", 20
+        )
+    )
+
 }
