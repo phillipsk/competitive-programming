@@ -2,6 +2,7 @@ package arrays
 
 class ReverseStringII {
     fun reverseStr(s: String, k: Int): String {
+        TODO("Testing Editorial")
         val cArr = s.toCharArray()
         val l = cArr.lastIndex
         val step = k * 2
@@ -31,6 +32,24 @@ class ReverseStringII {
             String(cArr)
         }
     }
+
+    internal class EditorialSolution {
+        fun reverseStr(s: String, k: Int): String {
+            val cArr = s.toCharArray()
+            var start = 0
+            while (start < cArr.size) {
+                var i = start
+                var j = Math.min(start + k - 1, cArr.size - 1)
+                while (i < j) {
+                    val tmp = cArr[i]
+                    cArr[i++] = cArr[j]
+                    cArr[j--] = tmp
+                }
+                start += 2 * k
+            }
+            return String(cArr)
+        }
+    }
 }
 
 public fun CharArray.reverse(fromIndex: Int, toIndex: Int): Unit {
@@ -47,24 +66,24 @@ public fun CharArray.reverse(fromIndex: Int, toIndex: Int): Unit {
 }
 
 fun main() {
-//    println(ReverseStringII().reverseStr("abcdefg", 2))
-//    println(ReverseStringII().reverseStr("abcd", 2))
-//    println(ReverseStringII().reverseStr("abcdef", 3))
-//    println(ReverseStringII().reverseStr("abcd", 4)) // dcba
-//    println(ReverseStringII().reverseStr("abcdefg", 4))
+//    println(ReverseStringII.EditorialSolution().reverseStr("abcdefg", 2))
+//    println(ReverseStringII.EditorialSolution().reverseStr("abcd", 2))
+//    println(ReverseStringII.EditorialSolution().reverseStr("abcdef", 3))
+    println(ReverseStringII.EditorialSolution().reverseStr("abcd", 4)) // dcba
+//    println(ReverseStringII.EditorialSolution().reverseStr("abcdefg", 4))
+
+    /*    println(
+            ReverseStringII.EditorialSolution().reverseStr(
+                "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknv" +
+                        "dmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl", 39
+            )
+        )*/
 
 /*    println(
-        ReverseStringII().reverseStr(
-            "hyzqyljrnigxvdtneasepfahmtyhlohwxmkqcdfehybknv" +
-                    "dmfrfvtbsovjbdhevlfxpdaovjgunjqlimjkfnqcqnajmebeddqsgl", 39
-        )
-    )*/
-
-    println(
-        ReverseStringII().reverseStr(
+        ReverseStringII.EditorialSolution().reverseStr(
             "krmyfshbspcgtesxnnljhfursyissjnsocgdhgfxubew" +
                     "llxzqhpasguvlrxtkgatzfybprfmmfithphckksnvjkcvnsqgsgosfxc", 20
         )
-    )
+    )*/
 
 }
