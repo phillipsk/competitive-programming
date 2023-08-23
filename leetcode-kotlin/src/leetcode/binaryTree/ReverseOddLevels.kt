@@ -2,26 +2,22 @@ package binaryTree
 
 class ReverseOddLevels {
     class Solution {
-        private var shouldReverse = true
-
         fun reverseOddLevels(root: TreeNode?): TreeNode? {
             if (root != null) {
-                helper(root.left, root.right)
+                helper(root.left, root.right, 1)
             }
             return root
         }
 
-        private fun helper(t1: TreeNode?, t2: TreeNode?) {
-            if (shouldReverse && t1 != null && t2 != null) {
+        private fun helper(t1: TreeNode?, t2: TreeNode?, level: Int) {
+            if (level % 2 > 0 && t1 != null && t2 != null) {
                 val tmp = t1.`val`
                 t1.`val` = t2.`val`
                 t2.`val` = tmp
             }
-            shouldReverse = !shouldReverse
             if (t1 != null && t2 != null) {
-                helper(t1.left, t2.left)
-                helper(t1.right, t2.right)
-                shouldReverse = !shouldReverse
+                helper(t1.left, t2.right, level + 1)
+                helper(t1.right, t2.left, level + 1)
             }
         }
     }
