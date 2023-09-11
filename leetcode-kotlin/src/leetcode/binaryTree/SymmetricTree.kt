@@ -3,33 +3,20 @@ package binaryTree
 class SymmetricTree {
     class Solution {
         fun isSymmetric(root: TreeNode?): Boolean {
-            val left = OrderLevelTraversalBFS().levelOrder(root?.left)
-            val right = OrderLevelTraversalBFS().levelOrder(root?.right)
-            val match = left == right.reversed()
-            var m = false
-            for (i in left.indices) {
-                m = left[i] == right[i].reversed()
-            }
-            return m
-        }
-    }
-
-    class EditorialSolution {
-        fun isSymmetric(root: TreeNode?): Boolean {
-            return isMirror(root, root)
+            return if (root != null && (root.left != null && root.right != null)) {
+                helper(root.left!!, root.right!!)
+            } else false
         }
 
-        fun isMirror(t1: TreeNode?, t2: TreeNode?): Boolean {
-            if (t1 == null && t2 == null) {
-                return true
+        private fun helper(t1: TreeNode, t2: TreeNode): Boolean {
+            val b = t1.`val` == t2.`val`
+            if (t1.left != null && t2.right != null) {
+                helper(t1.left!!, t2.right!!)
             }
-            return if (t1 == null || t2 == null) {
-                false
-            } else {
-                (t1.`val` == t2.`val`
-                        && isMirror(t1.right, t2.left)
-                        && isMirror(t1.left, t2.right))
+            if (t1.right != null && t2.left != null) {
+                helper(t1.right!!, t2.left!!)
             }
+            return b
         }
     }
 }
@@ -43,7 +30,7 @@ fun main() {
     root.right!!.left = TreeNode(4)
     root.right!!.right = TreeNode(3)
 
-    println(SymmetricTree.Solution().isSymmetric(root))
+//    println(SymmetricTree.Solution().isSymmetric(root))
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(2)
