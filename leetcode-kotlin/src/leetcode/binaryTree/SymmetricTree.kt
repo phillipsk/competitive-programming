@@ -27,6 +27,18 @@ class SymmetricTree {
             return b
         }
     }
+    class EditorialSolution {
+        fun isSymmetric(root: TreeNode?): Boolean {
+            return isMirror(root, root)
+        }
+
+        fun isMirror(t1: TreeNode?, t2: TreeNode?): Boolean {
+            if (t1 == null && t2 == null) return true
+            return if (t1 == null || t2 == null) false else (t1.`val` == t2.`val`
+                    && isMirror(t1.right, t2.left)
+                    && isMirror(t1.left, t2.right))
+        }
+    }
 }
 
 fun main() {
@@ -38,7 +50,7 @@ fun main() {
     root.right!!.left = TreeNode(4)
     root.right!!.right = TreeNode(3)
 
-    println(SymmetricTree.Solution().isSymmetric(root))
+    println(SymmetricTree.EditorialSolution().isSymmetric(root))
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(2)
@@ -47,8 +59,8 @@ fun main() {
     root.right!!.left = null
     root.right!!.right = TreeNode(3)
 
-    println(SymmetricTree.Solution().isSymmetric(root))
+    println(SymmetricTree.EditorialSolution().isSymmetric(root))
 
     root = TreeNode(1)
-    println(SymmetricTree.Solution().isSymmetric(root))
+    println(SymmetricTree.EditorialSolution().isSymmetric(root))
 }
