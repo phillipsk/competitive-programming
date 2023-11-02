@@ -67,6 +67,18 @@ class PathSum {
             return hasPathSumLH || hasPathSumRH
         }
     }
+
+    class Editorial {
+            fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
+                var sum = sum
+                if (root == null) return false
+                sum -= root.`val`
+                return if (root.left == null && root.right == null) sum == 0 else hasPathSum(
+                    root.left,
+                    sum
+                ) || hasPathSum(root.right, sum)
+            }
+    }
 }
 
 fun main() {
@@ -83,16 +95,16 @@ fun main() {
     root.right!!.right = TreeNode(4)
     root.right!!.right?.right = TreeNode(1)
 
-    println(PathSum.EditorialSolution().hasPathSum(root, 22))
+    println(PathSum.Editorial().hasPathSum(root, 22))
 
     root = TreeNode(1)
     root.left = TreeNode(2)
-//    println(PathSum.Solution().hasPathSum(root, 1))
+    println(PathSum.Editorial().hasPathSum(root, 1))
 
     root = TreeNode(1)
     root.left = TreeNode(-2)
     root.right = TreeNode(3)
-//    println(PathSum.Solution().hasPathSum(root, -2))
+    println(PathSum.Editorial().hasPathSum(root, -2))
 
     root = TreeNode(1)
     root.left = TreeNode(-2)
@@ -102,7 +114,7 @@ fun main() {
 
     root.right = TreeNode(-3)
     root.right!!.left = TreeNode(-2)
-//    println(PathSum.Solution().hasPathSum(root, -4))
+    println(PathSum.Editorial().hasPathSum(root, -4))
 }
 
 /*
