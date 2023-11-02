@@ -1,24 +1,5 @@
 package src.main.java.oneWeekPrepKit.day2
 
-import java.io.*
-import java.math.*
-import java.security.*
-import java.text.*
-import java.util.*
-import java.util.concurrent.*
-import java.util.function.*
-import java.util.regex.*
-import java.util.stream.*
-import kotlin.collections.*
-import kotlin.comparisons.*
-import kotlin.io.*
-import kotlin.jvm.*
-import kotlin.jvm.functions.*
-import kotlin.jvm.internal.*
-import kotlin.ranges.*
-import kotlin.sequences.*
-import kotlin.text.*
-
 /*
  * Complete the 'lonelyinteger' function below.
  *
@@ -29,22 +10,25 @@ import kotlin.text.*
 fun lonelyinteger(a: Array<Int>): Int {
     // Write your code here
     a.sort()
-    var r = 0
+    var r: Int? = null
     for (i in 0..a.size step 2) {
+        if (r != null) {
+            break
+        }
         if (i == a.size - 1) {
             r = a[a.size - 1]
         } else if (a[i + 1] != a[i]) {
             r = a[i]
         }
     }
-    return r
+    return r ?: 0
 }
 
 fun main(args: Array<String>) {
 //    val n = readLine()!!.trim().toInt()
 
-    val a = arrayOf(1, 2, 3, 4, 3, 2,1) //readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
-
+    var a = arrayOf(1, 2, 3, 4, 3, 2, 1) //readLine()!!.trimEnd().split(" ").map { it.toInt() }.toTypedArray()
+    a = arrayOf(7, 7, 4, 3, 4, 3, 6)
     val result = lonelyinteger(a)
 
     println(result)
