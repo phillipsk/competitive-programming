@@ -10,12 +10,11 @@ package src.main.java.oneWeekPrepKit.day2
 fun countingSort(arr: Array<Int>): Array<Int> {
     // Write your code here
     arr.sort()
-    for (i in 1 until arr.size) {
-        if (arr[i] == arr[i - 1]) {
-            arr[i] = 0
-        }
+    val list = Array(arr.size) { 0 }
+    for (i in arr.indices) {
+        list[arr[i]]++
     }
-    return arr
+    return list
 }
 
 fun main(args: Array<String>) {
