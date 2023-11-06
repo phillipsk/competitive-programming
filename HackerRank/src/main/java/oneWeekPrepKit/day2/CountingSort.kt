@@ -9,8 +9,8 @@ package src.main.java.oneWeekPrepKit.day2
 
 fun countingSort(arr: Array<Int>): Array<Int> {
     // Write your code here
-    arr.sort()
-    val list = Array(arr.size) { 0 }
+//    arr.sort()
+    val list = Array(100) { 0 }
     for (i in arr.indices) {
         list[arr[i]]++
     }
