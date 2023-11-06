@@ -9,23 +9,21 @@ package src.main.java.oneWeekPrepKit.day2
  */
 
 fun flippingMatrix(matrix: Array<Array<Int>>): Int {
-    // Write your code here
-//    val mapSum = mutableMapOf<Int, Int>()
-    for (i in 1 until matrix.size) {
-        val row = matrix[i]
-        var pRow = matrix[i - 1]
-//        var rSum = row.sum()
-        if (row.sum() > pRow.sum()) {
-            val tmp = pRow
-            pRow = row
-            matrix[i - 1] = pRow
-            matrix[i] = tmp
+    val n = matrix.size
+    var totalSum = 0
+
+    for (layer in 0 until n / 2) {
+        for (i in 0 until n / 2) {
+            val maxElement = maxOf(
+                matrix[layer][i],
+                matrix[layer][n - i - 1],
+                matrix[n - layer - 1][i],
+                matrix[n - layer - 1][n - i - 1]
+            )
+            totalSum += maxElement
         }
     }
-    for (c in matrix) {
-    }
-    println(matrix)
-    return 0
+    return totalSum
 }
 
 fun main(args: Array<String>) {
@@ -40,10 +38,10 @@ fun main(args: Array<String>) {
         }
     }
 
-//    val matrix = Array<Array<Int>>(2) {
-//        arrayOf(1, 2)
-//        arrayOf(3, 4)
-//    }
+/*    val matrix = Array<Array<Int>>(2) {
+        arrayOf(1, 2)
+        arrayOf(3, 4)
+    }*/
 
     val result = flippingMatrix(matrix)
 
