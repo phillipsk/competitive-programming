@@ -10,24 +10,7 @@ package src.main.java.oneWeekPrepKit.day3
  */
 
 fun towerBreakers(n: Int, m: Int): Int {
-    // Write your code here
-    // player 1 always goes first
-    // both players play optimally
-    var c = 0
-    val list = mutableListOf<Int>()
-    // val t = (n * m)+1
-    // println(t)
-
-    for(i in 1 until m) {
-        // print("$i ")
-        if(m % i == 0) {
-            // print("modulo true")
-            for(j in 1..n) list.add(i)
-        }
-    }
-
-    println(list.joinToString(","))
-    return -1
+    return if (m == 1 || n % 2 == 0) 2 else 1
 }
 
 fun main(args: Array<String>) {
