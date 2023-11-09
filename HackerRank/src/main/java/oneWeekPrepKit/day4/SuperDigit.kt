@@ -1,5 +1,7 @@
 package src.main.java.oneWeekPrepKit.day4
 
+import java.math.BigInteger
+
 
 /*
  * Complete the 'superDigit' function below.
@@ -14,13 +16,12 @@ fun superDigit(n: String, k: Int): Int {
     // Write your code here
 //    val s = if (k > 0) n.repeat(k) else n
     val s: String = if (k == 0) n else n.repeat(k)
-//    TODO: convert to larger data type string is too large for Int conversion
-    var sum: Int = if (k == 0) n.toInt() else s.toInt()
+    var sum: BigInteger = BigInteger.ZERO
     for (i in s.indices) {
-        sum += s[i].toString().toInt()
+        sum += s[i].toString().toBigInteger()
     }
     if (sum.toString().length > 1) {
-        superDigit(sum.toString(), 0)
+        return superDigit(sum.toString(), 0)
     }
 
 //    print("$sum // ")
