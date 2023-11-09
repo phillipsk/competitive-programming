@@ -19,15 +19,36 @@ fun countingValleys(steps: Int, path: String): Int {
         if (e.toString() == "U") {
             // print("mountain ")
             count++
+            if(count == 0) vc++
         } else {
             // print("valley ")
             count--
-            if(count == 0) vc++
         }
     }
     // print("$vc // $mc ")
     return vc
 
+}
+
+fun countingValleysGPT(steps: Int, path: String): Int {
+    // Write your code here
+    var level = 0
+    var valleyCount = 0
+
+    for (step in path) {
+        if (step == 'U') {
+            level++
+            if (level == 0) {
+                valleyCount++
+            }
+        } else if (step == 'D') {
+            level--
+        }
+
+
+    }
+
+    return valleyCount
 }
 
 fun main(args: Array<String>) {
