@@ -8,32 +8,27 @@
  */
 
 fun caesarCipher(s: String, k: Int): String {
-    // Write your code here
-    var r = ""
-    for (i in s.indices) {
-        var e = s[i]
-        if (e.isLetter()) {
-            if (e.isUpperCase()) {
-                val startASCII = 'A'.code
-                val endASCII = 'Z'.code
-                var c = (e.code + k).toChar()
-                if (c.code > endASCII) {
-                    c = (startASCII + (c.code - endASCII - 1)).toChar()
-                }
-                r += c
-            } else {
-                val startASCII = 'a'.code
-                val endASCII = 'z'.code
-                var c = (e.code + k).toChar()
-                if (c.code > endASCII) {
-                    c = (startASCII + (c.code - endASCII - 1)).toChar()
-                }
-                r += c
-            }
-        } else r += e
+    var result = ""
+    for (char in s) {
+        if (char.isLetter()) {
+            var startASCII = 'A'.code
+            var endASCII = 'Z'.code
+            var c = (char.code + k).toChar()
 
+            if (char.isLowerCase()) {
+                startASCII = 'a'.code
+                endASCII = 'z'.code
+            }
+
+            if (c.code > endASCII) {
+                c = (startASCII + ((c.code - endASCII - 1) % 26)).toChar()
+            }
+            result += c
+        } else {
+            result += char
+        }
     }
-    return r
+    return result
 }
 
 fun main(args: Array<String>) {
