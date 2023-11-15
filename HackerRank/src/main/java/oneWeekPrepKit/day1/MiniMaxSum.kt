@@ -1,8 +1,5 @@
 package src.main.java.oneWeekPrepKit.day1
 
-import kotlin.collections.*
-import kotlin.ranges.*
-
 /*
  * Complete the 'miniMaxSum' function below.
  *
@@ -11,11 +8,18 @@ import kotlin.ranges.*
 
 fun miniMaxSum(arr: Array<Int>): Unit {
     // Write your code here
-    val s = arr.sorted()
-    val min = s.slice(0 until arr.size - 1).map { it.toLong() }.sum()
-    val max = s.slice(1 until arr.size).map { it.toLong() } .sum()
+    var sum = 0L
+    var minNum = Long.MIN_VALUE
+    var maxNum = Long.MAX_VALUE
+    for(i in arr.indices) {
+        var e = arr[i].toLong()
+        sum+= e
+        minNum = minOf(e, minNum)
+        maxNum = maxOf(e, maxNum)
+    }
+    print("$minNum $maxNum")
+    // print("$minNum $maxNum")
 
-    print("$min $max")
 
 }
 

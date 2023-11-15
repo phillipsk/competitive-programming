@@ -1,9 +1,5 @@
 package src.main.java.oneWeekPrepKit.day1
 
-import kotlin.collections.*
-import kotlin.io.*
-import kotlin.text.*
-
 
 /*
  * Complete the 'findMedian' function below.
@@ -15,7 +11,8 @@ import kotlin.text.*
 fun findMedian(arr: Array<Int>): Int {
     // Write your code here
     return if (arr.size % 2 != 0) { // constraints say only odd sized arrays provided
-        arr.sorted()[arr.size/2]
+        arr.sort()
+        arr[arr.size/2]
     } else 0
 
 
