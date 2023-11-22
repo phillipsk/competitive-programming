@@ -12,12 +12,10 @@ package src.main.java.arrays
 fun compareTriplets(a: Array<Int>, b: Array<Int>): Array<Int> {
     val list = Array(2) { 0 }
     for (i in a.indices) {
-        for (j in b.indices) {
-            if (a[i] > b[i]) list[0]++
-            else if (a[i] < b[i]) list[1]++
+        if (a[i] > b[i]) list[0]++
+        else if (a[i] < b[i]) list[1]++
 //            val eq = a[i] == b[j]
-            println("a ${a[i]} :: b ${b[j]} //")
-        }
+//        println("a ${a[i]} :: b ${b[i]} //")
     }
     return list
 }
