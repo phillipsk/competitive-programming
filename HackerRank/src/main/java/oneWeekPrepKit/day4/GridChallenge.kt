@@ -9,23 +9,37 @@ package src.main.java.oneWeekPrepKit.day4
 
 fun gridChallenge(grid: Array<String>): String {
     // Write your code here
-    for (i in grid.indices) {
-        grid[i] = grid[i].toCharArray().apply { sort() }.joinToString("")
-    }
-    val length = grid[0].length
-    val r = Array(length) { "" }.toMutableList()
-    for (i in 0 until length) {
-        for (j in 0 until length) {
-            r[j].toCharArray()[i] = grid[j][i]
+    var isAlphaDesc = true
+    val size = grid.size
+    val list = Array(size) { "" }
+    var tmp: String
+    for (i in 0 until size) {
+        tmp = grid[i].toCharArray().sorted().joinToString("")
+        grid[i] = tmp
+//        list[i] = tmp
+        for (j in 0 until size) {
+//            l.add(grid[i][j])
+            list[j] += grid[i][j]
+
+            list[j].toCharArray()[i] = grid[i][j]
+            tmp = grid[i]
+
+//            val tmp = j .toCharArray().sorted().joinToString("")
+
+//            isAlphaDesc = tmp == tmp.toCharArray().sorted().joinToString("")
+//            if (!isAlphaDesc) {
+//                break
+//            }
         }
-        r[i] = r[i]
     }
-    return grid.joinToString() +"\n " + r.joinToString()
+    println(list.joinToString())
+    return if (isAlphaDesc) "YES" else "NO"
 }
 
 fun main(args: Array<String>) {
 
     val grid = arrayOf("eabcd", "fghij", "olkmn", "trpqs", "xywuv")
+//    val grid = arrayOf("mpxz", "abcd", "wlmf")
 
     val result = gridChallenge(grid)
 
