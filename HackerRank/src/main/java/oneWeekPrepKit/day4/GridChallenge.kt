@@ -9,17 +9,18 @@ package src.main.java.oneWeekPrepKit.day4
 
 fun gridChallenge(grid: Array<String>): String {
     // Write your code here
-
-//    val grid = transpose(grid)
-    val numRows = grid.size
-//    val numCols = numRows - 1
-    val numCols = grid[0].length
-
-    for (i in 0 until numCols - 1) {
+    for(i in 0 until grid.size) {
         val tmp = grid[i].toCharArray().sorted().joinToString("")
         grid[i] = tmp
-        for (j in 0 until numCols - 1) {
-            if (grid[j][i] > grid[j + 1][i]) return "NO"
+    }
+    // println(grid.joinToString())
+
+    for(i in 0 until grid.size - 1) {
+        for(j in 0 until grid[0].length) {
+            // print("${grid[i][j]} //")
+            // print("${grid[i+1][j]} //")
+
+            if(grid[i][j] > grid[i+1][j]) return "NO"
         }
     }
 
