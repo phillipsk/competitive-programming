@@ -1,24 +1,17 @@
 package src.main.java.arrays
 
 fun hourglassSum(arr: Array<Array<Int>>): Int {
-    val rows = arr.size
-    val columns = arr[0].size
+    // Write your code here
     var maxSum = Int.MIN_VALUE
-
-    for (i in 0 until rows - 2) {
-        for (j in 0 until columns - 2) {
-            val currentSum = (
-                    arr[i][j] + arr[i][j + 1] + arr[i][j + 2] +
-                            arr[i + 1][j + 1] +
-                            arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2]
-                    )
-
-            if (currentSum > maxSum) {
-                maxSum = currentSum
-            }
+    for (i in 0 until arr.size - 2) {
+        for (j in 0 until arr[i].size - 2) {
+            val sum = arr[i][j] + arr[i][j + 1] + arr[i][j + 2] +
+                    arr[i + 1][j + 1] +
+                    arr[i + 2][j] + arr[i + 2][j + 1] + arr[i + 2][j + 2]
+//            print("$sum :: ")
+            if (sum > maxSum) maxSum = sum
         }
     }
-
     return maxSum
 }
 
