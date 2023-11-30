@@ -10,24 +10,29 @@ package src.main.java.arrays
  */
 
 fun dynamicArray(n: Int, queries: Array<Array<Int>>): Array<Int> {
-    // Write your code here
     var lastAnswer = 0
     val arr = Array(n) { mutableListOf<Int>() }
+
+    val result = mutableListOf<Int>()
+
     queries.forEach {
         val x = it[1]
         val y = it[2]
         val idx = (x xor lastAnswer) % n
-        when {
-            it[0] == 1 -> { // 1
-                arr[idx][arr[idx].size] = y
+
+        when (it[0]) {
+            1 -> {
+                arr[idx].add(y)
             }
 
-            it[1] == 2 -> { // 2
+            2 -> {
                 lastAnswer = arr[idx][y % arr[idx].size]
+                result.add(lastAnswer)
             }
         }
     }
-    return arr[1].toTypedArray()
+
+    return result.toTypedArray()
 }
 
 fun main(args: Array<String>) {
