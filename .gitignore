@@ -82,3 +82,10 @@ fabric.properties
 /codility-kotlin/codility/gradlew.bat
 
 /HackerRank/target/classes/
+
+.idea/caches/
+.idea/modules.xml
+.idea/workspace.xml
+
+/leetcode-kotlin/build
+/leetcode-kotlin/.gradle
